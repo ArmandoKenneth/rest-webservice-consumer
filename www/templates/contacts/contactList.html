@@ -1,0 +1,18 @@
+<ion-view title="Contacts">
+	<ion-nav-buttons side="left">
+		<button menu-toggle="left" class="button button-icon icon ion-navicon"></button>
+	</ion-nav-buttons>
+	<ion-content class="has-header">
+		<!-- <ion-list> -->
+			<!-- <ion-item ng-repeat="contact in contacts"> -->
+				<div  collection-repeat="contact in contacts">
+				<div class="item item-text-wrap">
+               {{contact.displayName}}
+              </div>
+				</div>
+			<!-- </ion-item> -->
+		<!-- </ion-list> -->
+		<button class="button button-positive button-block" ng-click="getAllContacts()"> Get All Contacts </button>
+		
+	</ion-content>
+</ion-view>

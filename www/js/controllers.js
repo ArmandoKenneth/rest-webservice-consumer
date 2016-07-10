@@ -59,3 +59,37 @@ app.controller('PostDetailsCtrl', function ($scope, CommentsRestService, PostSer
 app.controller('MenuCtrl', function ($scope, MenuService) {
 	$scope.list = MenuService.all();
 });
+
+app.controller('ContactsCtrl', function ($scope, $cordovaContacts, $ionicPlatform, $ionicLoading) {
+
+	$scope.show = function() {
+		$ionicLoading.show({
+			template: '<p>Loading...</p><ion-spinner></ion-spinner>'
+		});
+	};
+
+	$scope.hide = function(){
+		$ionicLoading.hide();
+	};
+
+
+	$scope.getAllContacts = function() {
+		$scope.show($ionicLoading);
+		$scope.contacts = [];
+		$ionicPlatform.ready(function() {
+			$cordovaContacts.find({filter: '',multiple:true}).then(function (allContacts){
+				for (var i=0;i<allContacts.length;i++){
+					if (allContacts[i].displayName != null && allContacts[i].displayName.trim() != ""){
+						$scope.contacts.push(allContacts[i]);
+					}
+				}
+				//$scope.contacts = allContacts;
+				$scope.hide($ionicLoading);
+			}, function(error){
+				alert("deu erro");
+				alert(error);
+			});
+		});
+		
+	};
+});

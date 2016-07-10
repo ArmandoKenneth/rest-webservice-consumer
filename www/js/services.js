@@ -86,7 +86,7 @@ app.factory('PostRestService', function ($resource) {
 })
 
 app.factory('MenuService', function() {
-	var menuItems = [{text: 'Users', link: '#/users'}];
+	var menuItems = [{text: 'Users', link: '#/users'},{text: 'Contacts', link: '#/contacts'}];
 	return {
 		all: function() {
 			return menuItems;
